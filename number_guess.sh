@@ -2,7 +2,7 @@
 
 PSQL="psql --username=freecodecamp --dbname=number_guess -t --no-align -c"
 R_NUM=$((1 + $RANDOM % 1000))
-GUESSES=0
+GUESSES=1
 echo "Enter your username:"
 read USERNAME
 GET_USER=$($PSQL "SELECT username FROM usernames WHERE username='$USERNAME';")
@@ -24,10 +24,12 @@ do
   if [[ $GUESS < $R_NUM ]]
   then
     echo "It's higher than that, guess again:"
+    $GUESSES=$GUESSES+1
     read GUESS
   else
     echo "It's lower than that, guess again:"
+    $GUESSES=$GUESSES+1
     read GUESS
   fi
 done
-echo "RANDOM NUMBER: $R_NUM"
+echo "You guessed it in $GUESSES tries. The secret number was $R_NUM. Nice job!"
