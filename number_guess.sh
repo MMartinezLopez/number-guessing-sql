@@ -24,11 +24,11 @@ do
   if [[ $GUESS < $R_NUM ]]
   then
     echo "It's higher than that, guess again:"
-    $GUESSES=$GUESSES+1
+    ((GUESSES++))
     read GUESS
   else
     echo "It's lower than that, guess again:"
-    $GUESSES=$GUESSES+1
+    ((GUESSES++))
     read GUESS
   fi
 done
